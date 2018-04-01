@@ -9,6 +9,8 @@ var clientId = null;
 
 let toggle = true;
 let button = document.getElementById("pingButton")
+let circle = document.getElementById("circle");
+
 
 function toggleText(button)  {
     button.innerText = button.innerText === "ping" ? "stop" : "ping";
@@ -30,6 +32,7 @@ client.on("register", function(id) {
   clientId = id;
   console.log("ws id: " + id);
   document.getElementById("wsId").innerText = id;
+  circle.style.fill = 'green'
 });
 
 client.on("notify", function(result) {
@@ -39,6 +42,11 @@ client.on("notify", function(result) {
 
 client.on("timer", function(result) {
   document.getElementById("pong").innerHTML = result;
+});
+
+client.on("disconnect", function(){
+    console.log("client disconnected from server");
+    circle.style.fill = 'red'
 });
 
 function socketPrintNotify(data) {

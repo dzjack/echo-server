@@ -1,2 +1,2 @@
-var socketServerURI='http://localhost:3001'
-var socketServerPath='/debugcf/socket'
+var socketServerURI='127.0.0.1:3001'
+var socketServerPath='/debugcf/socket.io'

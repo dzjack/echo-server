@@ -8,13 +8,21 @@ var clientId = null;
 //client.emit('subscribeToTimer', 1000);
 
 let toggle = true;
+let button = document.getElementById("pingButton")
 
-document.getElementById("pingButton").addEventListener("click", function() {
+function toggleText(button)  {
+    button.innerText = button.innerText === "ping" ? "stop" : "ping";
+ }
+
+button.addEventListener("click", function() {
   if (toggle) {
     toggle = false;
+    toggleText(button)
     return client.emit("subscribeToTimer", 1000);
+    
   }
   toggle = true;
+  toggleText(button)
   return client.emit("unsubscribeToTimer");
 });
 
